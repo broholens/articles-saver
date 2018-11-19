@@ -26,4 +26,4 @@ api.add_resource(Url, '/api/insert')
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run('0.0.0.0')
