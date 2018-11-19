@@ -1,3 +1,5 @@
+from gevent import monkey
+monkey.patch_all()
 from flask import Flask, request, jsonify
 from flask_restful import Resource, Api
 from model import insert
