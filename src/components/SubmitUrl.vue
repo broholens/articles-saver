@@ -36,7 +36,7 @@ export default {
     },
     submit: function(){
       var _this = this;
-      _this.axios.get('http://localhost:5000/api/insert?url=' + _this.ruleForm.url)
+      _this.axios.get('http://39.107.86.245:5000/api/insert?url=' + _this.ruleForm.url)
       .then(function (response) {
         if(response.data.result === true){
           _this.$notify.success({
