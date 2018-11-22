@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from pymongo import MongoClient
-from utils import get_article_text
 
 client = MongoClient()
 db = client.articles
@@ -11,7 +10,6 @@ def insert_url(url):
     try:
         result = collection.update_one(
             {'url': url},
-            # {'$set': {'txt': url}},
             upsert=True
         )
         if result.matched_count > 0:
