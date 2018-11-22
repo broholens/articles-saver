@@ -3,10 +3,10 @@
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
       <el-form-item prop="url">
         <!-- can not use :model -->
-        <el-input v-model="ruleForm.url" placeholder="请输入网址" clearable></el-input>
+        <el-input v-model="ruleForm.url" placeholder="paste url or search by keywords" clearable></el-input>
       </el-form-item>
       <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm')">加入</el-button>
+          <el-button type="primary" @click="submitForm('ruleForm')">work it out</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -21,7 +21,7 @@ export default {
           'url': ''
       },
       rules: {
-          url: [{type: 'url', required: true, message: "请输入合法url", trigger: 'blur'}]
+          url: [{required: true, message: "tap something here", trigger: 'blur'}]
       }
     }
   },
@@ -36,17 +36,12 @@ export default {
     },
     submit: function(){
       var _this = this;
-      _this.axios.get('http://39.107.86.245:5000/api/insert?url=' + _this.ruleForm.url)
+      _this.axios.get('http://127.0.0.1:5000/api/insert?url=' + _this.ruleForm.url)
       .then(function (response) {
-        if(response.data.result === true){
-          _this.$notify.success({
-          message: '加入成功！'
-          })
-        }else{
-          _this.$notify.error({
-          message: '加入失败！'
-          })
-        }
+        _this.$notify({
+          message: response.data.msg,
+          type: response.data.type
+        })
       })
     }
   }
