@@ -1,7 +1,7 @@
 import os
 from concurrent.futures import ThreadPoolExecutor
-from .save_article import Article
-from .config.config import IMG_DIR
+from save_article import Article
+from config.config import IMG_DIR
 from flask import Flask, request
 from flask_restful import Api, Resource
 
@@ -22,5 +22,7 @@ class ArticleSaver(Resource):
         return 'OK', 200
 
 
+api.add_resource(ArticleSaver, '/')
+
 if __name__ == '__main__':
-    app.run()
+    app.run('0.0.0.0')

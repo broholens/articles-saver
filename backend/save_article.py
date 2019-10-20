@@ -1,6 +1,6 @@
 import os
-from .util import browser_util, file_util
-from .config.config import IMG_DIR
+from util import browser_util, file_util
+from config.config import IMG_DIR
 
 
 class Article:
