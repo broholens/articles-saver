@@ -17,7 +17,9 @@ article = Article()
 
 class ArticleSaver(Resource):
     def post(self):
-        url = request.args.get('url')
+        url = request.form.get('url')
+        if not url:
+            return 'ERROR', 444
         executor.submit(Article().save(url))
         return 'OK', 200
 
